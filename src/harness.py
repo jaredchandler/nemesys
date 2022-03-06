@@ -1,4 +1,8 @@
 """
+
+
+Takes input from stdin as ascii hex messages, one per line.  Hacked loader to create the dataset using netzob types. 
+
 Reference implementation for calling NEMESYS: NEtwork MEssage Syntax analysYS with an unknown protocol.
 Usenix WOOT 2018.
 
