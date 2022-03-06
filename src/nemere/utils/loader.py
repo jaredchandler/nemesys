@@ -86,7 +86,7 @@ class SpecimenLoader(BaseLoader):
     Prepares and represents messages to support further analysis.
     """
 
-    def __init__(self, pcap: str, layer:int=-1, relativeToIP:bool=False):
+    def __init__(self, pcap: str, layer:int=-1, relativeToIP:bool=False, hx=None):
         """
         Load the messages from the PCAP file of the given name.
 
@@ -124,7 +124,16 @@ class SpecimenLoader(BaseLoader):
             importer = ScaPyCAPimporter(self.pcapFileName, absLayer)
             l5msgs = importer.messages
             l1msgs = importer.rawMessages
-        super().__init__(l5msgs, l1msgs)
+        # If we have hex input, construct that.
+        if hx != None:
+            ll = []
+            for l in hx.strip().split("\\n"):
+                ll.append(RawMessage(bytes.fromhex(l)))
+            super().__init__(ll, ll)
+        else:
+            super().__init__(l5msgs, l1msgs)
+            
+        #super().__init__(l5msgs, l1msgs)
 
     # The int value of some pcapy datalink denotations is different from the tcpdump ones: https://www.tcpdump.org/linktypes.html
     # http://vpnb.leipzig.freifunk.net:8004/srv2/lede/lede-20171116/build_dir/target-mips_24kc_musl/python-pcapy-0.11.1/pcapy.html#idp8777598240
