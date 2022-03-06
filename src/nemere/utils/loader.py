@@ -127,7 +127,7 @@ class SpecimenLoader(BaseLoader):
         # If we have hex input, construct that.
         if hx != None:
             ll = []
-            for l in hx.strip().split("\\n"):
+            for l in hx.strip().split("\n"):
                 ll.append(RawMessage(bytes.fromhex(l)))
             super().__init__(ll, ll)
         else:
