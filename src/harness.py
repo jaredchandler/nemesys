@@ -54,13 +54,18 @@ if __name__ == '__main__':
 
     startsegmentation = time.time()
     segmentsPerMsg = bcDeltaGaussMessageSegmentation(specimens, sigma)
+    print("HARNESSSTART")
     for rpm in segmentsPerMsg:
       print("\t"," ".join([f.bytes.hex().upper() for f in rpm]))
+    print("HARNESSEND")
     runtimeSegmentation = time.time() - startsegmentation
     refinedPerMsg = refinements(segmentsPerMsg, unused=None)
     print("refined")
+    print("HARNESSSTART")
     for rpm in refinedPerMsg:
       print("\t"," ".join([f.bytes.hex().upper() for f in rpm]))
+    print("HARNESSEND")
+    
     runtimeRefinement = time.time() - startsegmentation
 
     print('Segmented and refined in {:.3f}s'.format(time.time() - startsegmentation))
