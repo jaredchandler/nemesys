@@ -188,6 +188,14 @@ class SegmentedMessages(object):
         print(len([ul for ul in ulab if ul >= 0]), "Clusters found",
               "(with noise {})".format(len(segmentClusters[-1]) if -1 in segmentClusters else 0))
 
+        
+        
+        for v in segmentClusters:
+          print(v)
+          for m in segmentClusters[v]:
+            print("\t",m)
+        print("-")
+        print("ulab",ulab)
         return segmentClusters, labels
 
 
