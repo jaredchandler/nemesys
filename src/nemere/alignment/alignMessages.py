@@ -193,7 +193,7 @@ class SegmentedMessages(object):
         for v in segmentClusters:
           print(v)
           for m in segmentClusters[v]:
-            print("\t",m)
+            print("\t",[v.bytes.hex() for v in m])
         print("-")
         print("ulab",ulab)
         return segmentClusters, labels
