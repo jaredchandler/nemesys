@@ -419,7 +419,7 @@ class CachedDistances(object):
         """
         print("Load messages from {}...".format(self.pcapName))
         self.specimens = SpecimenLoader(self.pcapfilename, self.layer, relativeToIP=self.relativeToIP)
-        if self.dissectGroundtruth:
+        if False and self.dissectGroundtruth:
             self.comparator = MessageComparator(
                 self.specimens, layer=self.layer, relativeToIP=self.relativeToIP, debug=self.debug)
         else:
@@ -465,13 +465,14 @@ class CachedDistances(object):
         else:
             self.dc = DelegatingDC(chainedSegments)
         self.dist_calc_segmentsTime = time.time() - dist_calc_segmentsTime
-        try:
-            with open(self.dccachefn, 'wb') as f:
-                pickle.dump((self.segmentedMessages, self.comparator, self.dc), f, pickle.HIGHEST_PROTOCOL)
-            print("Write distances to cache file {}".format(self.dccachefn))
-        except MemoryError:
-            print("DC could not be cached due to a MemoryError. Removing", self.dccachefn, "and continuing.")
-            os.remove(self.dccachefn)
+        if False:
+            try:
+                with open(self.dccachefn, 'wb') as f:
+                    pickle.dump((self.segmentedMessages, self.comparator, self.dc), f, pickle.HIGHEST_PROTOCOL)
+                print("Write distances to cache file {}".format(self.dccachefn))
+            except MemoryError:
+                print("DC could not be cached due to a MemoryError. Removing", self.dccachefn, "and continuing.")
+                os.remove(self.dccachefn)
 
     def _load(self):
         print("Load distances from cache file {}".format(self.dccachefn))
