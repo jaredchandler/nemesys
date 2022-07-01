@@ -427,6 +427,13 @@ class CachedDistances(object):
                 self.specimens, layer=self.layer, relativeToIP=self.relativeToIP, debug=self.debug)
 
         print("Segmenting messages...", end=' ')
+        print(type(self.specimens))
+        print(self.specimens)
+        sl = self.specimens
+        for m in list(sl.messagePool.items()):
+             
+          print("whole",m[0].data.hex())  # the whole message
+          print("target",m[1].data.hex())
         segmentationTime = time.time()
         # select tokenizer by command line parameter
         if self.tokenizer == "tshark":
