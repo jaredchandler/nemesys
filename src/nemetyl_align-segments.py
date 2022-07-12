@@ -442,19 +442,19 @@ if __name__ == '__main__':
     # DEBUG and TESTING
     # # # # # # # # # # # # # # # # # # # # # # # #
 
-    groundtruth = {msg: pm.messagetype for msg, pm in comparator.parsedMessages.items()}
-    for msg, mtype in groundtruth.items():
-        msg.messageType = mtype
+    # groundtruth = {msg: pm.messagetype for msg, pm in comparator.parsedMessages.items()}
+    # for msg, mtype in groundtruth.items():
+    #     msg.messageType = mtype
     minCsize = numpy.log(len(segmentedMessages))
 
     # # # # # # # # # # # # # # # # # # # # # # # #
     # write message clustering statistics to csv
     # # # # # # # # # # # # # # # # # # # # # # # #
-    fullClusterReport = IndividualClusterReport(groundtruth, filechecker)
-    fullClusterReport.write(tyl.messageObjClusters, inferenceParams.dict)
+    #fullClusterReport = IndividualClusterReport(groundtruth, filechecker)
+    #fullClusterReport.write(tyl.messageObjClusters, inferenceParams.dict)
     # # # # # # # #
-    fullCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
-    fullCombinReport.write(tyl.messageObjClusters, inferenceParams.dict)
+    #fullCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
+    #fullCombinReport.write(tyl.messageObjClusters, inferenceParams.dict)
 
     # # min cluster size # # # # # #
     inferenceParams.postProcess = "minCsize"
@@ -463,8 +463,8 @@ if __name__ == '__main__':
     filteredClusters[noisekey] = list() if not noisekey in filteredClusters else filteredClusters[noisekey].copy()
     filteredClusters[noisekey].extend(s for k, v in tyl.messageObjClusters.items()
                                       if len(v) < minCsize for s in v)
-    filteredCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
-    filteredCombinReport.write(filteredClusters, inferenceParams.dict)
+    #filteredCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
+    #filteredCombinReport.write(filteredClusters, inferenceParams.dict)
 
 
 
