@@ -189,12 +189,13 @@ class SegmentedMessages(object):
               "(with noise {})".format(len(segmentClusters[-1]) if -1 in segmentClusters else 0))
 
         
-        
+        print("BEGIN CLUSTERS")
         for v in segmentClusters:
           print(v)
           for m in segmentClusters[v]:
-            print(v,"\t"," ".join([v.bytes.hex() for v in m]))
-        print("-")
+            print("CLUSTERRESULT",v,"\t","XX","\t"," ".join([v.bytes.hex() for v in m]))
+        #print("-")
+        print("END CLUSTERS")
         print("ulab",ulab)
         return segmentClusters, labels
 
