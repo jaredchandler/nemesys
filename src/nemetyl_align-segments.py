@@ -482,7 +482,7 @@ if __name__ == '__main__':
     inferenceParams.postProcess = tyl.splitClusters(  # activateCVSout by the following kwargs
         runtitle = inferenceParams.dict,
         trace = filechecker.pcapstrippedname,
-        clusterPrecisions = {cs[0]: cs[2] for cs in fullClusterReport.precisionRecallList if cs is not None})
+        clusterPrecisions = {})
     # # # # # # # # # # # # # # # # # # # # # # # #
     if withplots:
         # plot distances and message clusters
@@ -499,11 +499,11 @@ if __name__ == '__main__':
     # # # # # # # # # # # # # # # # # # # # # # # #
     # write message clustering statistics to csv
     # # # # # # # # # # # # # # # # # # # # # # # #
-    splitClusterReport = IndividualClusterReport(groundtruth, filechecker)
-    splitClusterReport.write(tyl.messageObjClusters, inferenceParams.dict)
+    #splitClusterReport = IndividualClusterReport(groundtruth, filechecker)
+    #splitClusterReport.write(tyl.messageObjClusters, inferenceParams.dict)
     # # # # # # # #
-    splitCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
-    splitCombinReport.write(tyl.messageObjClusters, inferenceParams.dict)
+    #splitCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
+    #splitCombinReport.write(tyl.messageObjClusters, inferenceParams.dict)
 
     # # # # # # # # min cluster size
     inferenceParams.postProcess += "-minCsize"
@@ -513,8 +513,8 @@ if __name__ == '__main__':
     filteredClusters[noisekey] = list() if not noisekey in filteredClusters else filteredClusters[noisekey].copy()
     filteredClusters[noisekey].extend(s for k, v in tyl.messageObjClusters.items()
                                       if len(v) < minCsize for s in v)
-    filteredSplitCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
-    filteredSplitCombinReport.write(filteredClusters, inferenceParams.dict)
+    #filteredSplitCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
+    #filteredSplitCombinReport.write(filteredClusters, inferenceParams.dict)
     # # # # # # # # # # # # # # # # # # # # # # # #
 
 
@@ -529,11 +529,12 @@ if __name__ == '__main__':
     # # # # # # # # # # # # # # # # # # # # # # # #
     # write message clustering statistics to csv
     # # # # # # # # # # # # # # # # # # # # # # # #
-    mergedClusterReport = IndividualClusterReport(groundtruth, filechecker)
-    mergedClusterReport.write(tyl.messageObjClusters, inferenceParams.dict)
+
+    #mergedClusterReport = IndividualClusterReport(groundtruth, filechecker)
+    #mergedClusterReport.write(tyl.messageObjClusters, inferenceParams.dict)
     # # # # # # # #
-    mergedCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
-    mergedCombinReport.write(tyl.messageObjClusters, inferenceParams.dict)
+    #mergedCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
+    #mergedCombinReport.write(tyl.messageObjClusters, inferenceParams.dict)
 
     # # # # # # # # min cluster size
     inferenceParams.postProcess += "-minCsize"
@@ -542,8 +543,8 @@ if __name__ == '__main__':
     filteredMerged[noisekey] = list() if not noisekey in filteredMerged else filteredMerged[noisekey].copy()
     filteredMerged[noisekey].extend(s for k, v in tyl.messageObjClusters.items()
                                       if len(v) < minCsize for s in v)
-    filteredSplitCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
-    filteredSplitCombinReport.write(filteredClusters, inferenceParams.dict)
+    #filteredSplitCombinReport = CombinatorialClustersReport(groundtruth, filechecker)
+    #filteredSplitCombinReport.write(filteredClusters, inferenceParams.dict)
 
     # # Alternative approach to ClusterMerger, discarded.
     # clusterClusters()
@@ -589,7 +590,7 @@ if __name__ == '__main__':
     # TODO split clusters are internally re-aligned, but NOT merged clusters. Can this lead to an inconsistency?
     csvpath = join(filechecker.reportFullPath,
                    f"NEMETYL-symbols-{inferenceParams.plotTitle}-{filechecker.pcapstrippedname}.csv")
-    if not exists(csvpath):
+    if False and not exists(csvpath):
         print('Write alignments to {}...'.format(csvpath))
         with open(csvpath, 'w') as csvfile:
             symbolcsv = csv.writer(csvfile)
