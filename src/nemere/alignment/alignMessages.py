@@ -191,9 +191,9 @@ class SegmentedMessages(object):
         
         print("BEGIN CLUSTERS")
         for v in segmentClusters:
-          print(v)
+          #print(v)
           for m in segmentClusters[v]:
-            print("CLUSTERRESULT",v,"\t","XX","\t"," ".join([v.bytes.hex() for v in m]))
+            print("CLUSTERRESULT","\t",v,"\t","XX","\t"," ".join([v.bytes.hex() for v in m]))
         #print("-")
         print("END CLUSTERS")
         print("ulab",ulab)
