@@ -480,8 +480,8 @@ if __name__ == '__main__':
     # SPLIT clusters based on fields without rare values
     # # # # # # # # # # # # # # # # # # # # # # # #
     inferenceParams.postProcess = tyl.splitClusters(  # activateCVSout by the following kwargs
-        #runtitle = inferenceParams.dict,
-        #trace = filechecker.pcapstrippedname,
+        runtitle = None,
+        trace = None,
         clusterPrecisions = {})
     # # # # # # # # # # # # # # # # # # # # # # # #
     if withplots:
